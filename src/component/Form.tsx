@@ -5,7 +5,7 @@ import { Activity } from "../types";
 import { useActivity } from "../hook/useActivity";
 
 const initialState: Activity = {
-    id: "",
+    id: uuidv4(),
     category: 1,
     name: "",
     calories: 0,

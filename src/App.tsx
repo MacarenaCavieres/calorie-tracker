@@ -1,7 +1,15 @@
+import { useEffect } from "react";
 import ActivityList from "./component/ActivityList";
 import Form from "./component/Form";
+import { useActivity } from "./hook/useActivity";
 
 function App() {
+    const { state } = useActivity();
+
+    useEffect(() => {
+        localStorage.setItem("activity", JSON.stringify(state.activities));
+    }, [state.activities]);
+
     return (
         <>
             <header className="bg-cyan-800 py-10 flex justify-around items-center px-3">

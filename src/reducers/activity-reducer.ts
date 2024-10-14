@@ -6,8 +6,13 @@ export type ActivityStateProps = {
     activities: Activity[];
 };
 
+const localStorageActivity = (): Activity[] => {
+    const activitySave = localStorage.getItem("activity");
+    return activitySave ? JSON.parse(activitySave) : [];
+};
+
 export const initialState = {
-    activities: [],
+    activities: localStorageActivity(),
 };
 
 export const activityReducer = (state: ActivityStateProps = initialState, action: ActivityActions) => {

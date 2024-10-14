@@ -1,3 +1,4 @@
+import ActivityList from "./component/ActivityList";
 import Form from "./component/Form";
 
 function App() {
@@ -14,10 +15,13 @@ function App() {
             </header>
 
             <main className="bg-cyan-700">
-                <section className=" py-20 px-5 max-w-4xl mx-auto">
+                <section className="py-20 px-5 max-w-4xl mx-auto">
                     <Form />
                 </section>
             </main>
+            <section className="px-5 max-w-4xl mx-auto">
+                <ActivityList />
+            </section>
         </>
     );
 }

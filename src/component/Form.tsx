@@ -1,4 +1,4 @@
-import { ChangeEvent, useState } from "react";
+import { ChangeEvent, useEffect, useState } from "react";
 import { v4 as uuidv4 } from "uuid";
 import { categories } from "../data/categories";
 import { Activity } from "../types";
@@ -12,8 +12,15 @@ const initialState: Activity = {
 };
 
 export default function Form() {
-    const { dispatch } = useActivity();
+    const { state, dispatch } = useActivity();
     const [activity, setActivity] = useState<Activity>(initialState);
+
+    useEffect(() => {
+        if (state.activeId) {
+            const selectedActivity = state.activities.filter((item) => item.id === state.activeId)[0];
+            setActivity(selectedActivity);
+        }
+    }, [state.activeId]);
 
     const handleChange = (e: ChangeEvent<HTMLSelectElement> | ChangeEvent<HTMLInputElement>) => {
         const isNumberField = ["category", "calories"].includes(e.target.id);
@@ -47,6 +54,7 @@ export default function Form() {
                 <select
                     id="category"
                     className="rounded-lg border border-slate-300 p-2"
+                    value={activity.category}
                     onChange={handleChange}
                 >
                     {categories.map((category) => (
@@ -63,6 +71,7 @@ export default function Form() {
                 <input
                     id="name"
                     type="text"
+                    value={activity.name}
                     className="rounded-lg border border-slate-300 p-2"
                     placeholder="Manzana, Trotar, Bicicleta, Hamburguesa"
                     onChange={handleChange}
@@ -75,6 +84,7 @@ export default function Form() {
                 <input
                     id="calories"
                     type="number"
+                    value={activity.calories}
                     className="rounded-lg border border-slate-300 p-2"
                     placeholder="500, 300"
                     onChange={handleChange}

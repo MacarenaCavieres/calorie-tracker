@@ -2,7 +2,7 @@ import { PencilSquareIcon, XCircleIcon } from "@heroicons/react/24/outline";
 import { useActivity } from "../hook/useActivity";
 
 export default function ActivityList() {
-    const { state, categoryName } = useActivity();
+    const { state, dispatch, categoryName } = useActivity();
 
     return (
         <div className="mt-5 py-10">
@@ -26,7 +26,10 @@ export default function ActivityList() {
                         </p>
                     </div>
                     <div className="flex gap-5 items-center">
-                        <button type="button">
+                        <button
+                            type="button"
+                            onClick={() => dispatch({ type: "set-activeId", payload: { id: item.id } })}
+                        >
                             <PencilSquareIcon className="h-8 w-8 text-gray-800" />
                         </button>
                         <button type="button">

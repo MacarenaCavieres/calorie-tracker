@@ -1,50 +1,64 @@
-# React + TypeScript + Vite
+# Proyecto: Registro de Calorías
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Descripción
+Este proyecto es una aplicación para registrar y gestionar actividades relacionadas con el consumo y quema de calorías. El usuario puede agregar actividades como comer o hacer ejercicio, ver la lista de actividades realizadas, y obtener un resumen de las calorías consumidas, quemadas y el total restante. La aplicación también permite resetear todos los datos guardados.
 
-Currently, two official plugins are available:
+Para ver el proyecto haz click [aquí](https://macarenacavieres.github.io/calorie-tracker/)
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Características
+- Agregar actividades con nombre, categoría (comida o ejercicio) y cantidad de calorías.
+- Visualización de todas las actividades registradas.
+- Cálculo automático de calorías consumidas, quemadas y el total.
+- Funcionalidad para editar y eliminar actividades.
+- Almacenamiento persistente en `localStorage` para mantener los datos al recargar la página.
+- Posibilidad de resetear toda la aplicación.
 
-## Expanding the ESLint configuration
+## Estructura del proyecto
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+- **App.tsx**: Componente principal de la aplicación que maneja el estado global de las actividades y las acciones disponibles (agregar, editar, eliminar, resetear).
+- **Form.tsx**: Formulario para agregar o editar una actividad. Permite seleccionar la categoría, describir la actividad y establecer la cantidad de calorías.
+- **ActivityList.tsx**: Componente que lista todas las actividades registradas, permitiendo la edición y eliminación de las mismas.
+- **CalorieTracker.tsx**: Componente que muestra un resumen de las calorías consumidas, quemadas y el balance total.
+- **CalorieDisplay.tsx**: Componente para mostrar visualmente el resumen de calorías.
 
-- Configure the top-level `parserOptions` property like this:
+## Instalación
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
+1. Clonar el repositorio:
+```bash
+git clone https://github.com/MacarenaCavieres/calorie-tracker.git
+```
+2. Instalar las dependencias:
+```bash
+npm install
+```
+3. Ejecutar el proyecto
+```bash
+npm start
 ```
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+## Uso
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+- Al abrir la aplicación, puedes agregar actividades (comidas o ejercicios) utilizando el formulario.
+- Cada actividad registrada se mostrará en la lista de actividades.
+- El resumen de calorías (consumidas, quemadas y total) se actualizará automáticamente conforme se agreguen o eliminen actividades.
+- Puedes resetear la aplicación con el botón **"Resetear app"**, lo que eliminará todas las actividades guardadas.
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+## Estado Global
+
+El estado de la aplicación es manejado a través de un contexto (`ActivityContext`) que utiliza `useReducer` para gestionar las acciones de agregar, editar, eliminar actividades, así como para resetear la aplicación.
+
+## Almacenamiento en localStorage
+
+Las actividades se guardan en `localStorage` para asegurar que los datos persistan entre sesiones del navegador.
+
+## Tecnologías utilizadas
+
+- **React**
+- **TypeScript**
+- **Tailwind CSS**
+- **UUID** para generar identificadores únicos.
+- **LocalStorage** para persistir datos en el navegador.
+
+## Desarrollado 
+
+Desarrollado por [MCavieres](https://www.linkedin.com/in/macarena-cavieres-rubio/)
